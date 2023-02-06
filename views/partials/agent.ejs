@@ -1,0 +1,103 @@
+    <!-- ======= Agents Section ======= -->
+
+    <section class="section-agents section-t8"> 
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="title-wrap d-flex justify-content-between">
+              <div class="title-box">
+                <h2 class="title-a">Best Agents</h2>
+              </div>
+              <div class="title-link">
+                <a href="agents-grid.html">All Agents
+                  <span class="bi bi-chevron-right"></span>
+                </a>
+              </div> 
+
+            </div> 
+            
+          </div> 
+
+        </div>  
+        <div id="property-carousel" class="swiper"> 
+
+          <div class="swiper-wrapper">
+            <% if(landlord.length>0) {%> 
+
+            <% landlord.forEach(function(agent){ %>
+  
+            <div class="carousel-item-b swiper-slide">
+              <div class="card-box-d"> 
+
+                <div class="card-img-d"> 
+    
+                  <img src="<%= agent.profileimage %>" alt=""  width="500" height="600" class="img-d img-fluid">
+                </div> 
+    
+                
+                <div class="card-overlay card-overlay-hover">
+                  <div class="card-header-d">
+                    <div class="card-title-d align-self-center">
+                      <h3 class="title-d">
+                        <a href="agentvacancies/<%= agent.username %>" class="link-two"><%= agent.agentFullName %>
+                          </a>
+                      </h3>
+                    </div>
+                  </div>
+                  <div class="card-body-d">
+                    <p class="content-d color-text-a">
+                      <%= agent.description %>                    </p>
+                    <div class="info-agents color-a">
+                      <p>
+                        <strong>Phone: </strong> <%= agent.phone %>  
+                      </p>
+                      <p>
+                        <strong>Email: </strong> <%= agent.email %>  
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card-footer-d">
+                    <div class="socials-footer d-flex justify-content-center">
+                      <ul class="list-inline">
+                        <li class="list-inline-item">
+                          <a href="<%= agent.facebook %>  " class="link-one">
+                            <i class="bi bi-facebook" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="<%= agent.twitter %>  " class="link-one">
+                            <i class="bi bi-twitter" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        <li class="list-inline-item">
+                          <a href="<%= agent.instagram %>  " class="link-one">
+                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                          </a>
+                        </li>
+                        
+                      </ul> 
+    
+                    </div> 
+    
+                  </div> 
+    
+                </div> 
+    
+              </div> 
+            </div><!-- End carousel item --> 
+            <% }); %>  
+  
+            <%} else{%> 
+              <h4 style="color: red;">No Agents available!!</h4>
+    
+            <% } %> 
+          
+          </div>
+        </div>
+
+         
+      </div> 
+
+    </section><!-- End Agents Section --> 
+

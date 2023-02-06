@@ -1,0 +1,154 @@
+<html>
+  <head>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+      function onSubmit(token) {
+        document.getElementById("contact-form").submit();
+      }
+    </script>
+  </head>
+  <body>
+  <main id="main">
+
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single">Contact US</h1>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section><!-- End Intro Single-->
+
+    <!-- ======= Contact Single ======= -->
+    <section class="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="contact-map box">
+              <div id="map" class="contact-map"> 
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1899.312825073043!2d31.141750599999988!3d-17.809282299999992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2szw!4v1664188638021!5m2!1sen!2szw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 section-t8">
+            <div class="row">
+              <div class="col-md-7">
+                <form action="/contact" method="post" role="form" id="contact-form">
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <div class="form-group">
+                        <input type="text" name="name" id="name" class="form-control form-control-lg form-control-a" placeholder="Your Name" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="form-group">
+                        <input name="email" type="email" class="form-control form-control-lg form-control-a" placeholder="Your Email" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                      <div class="form-group">
+                        <input type="text" name="subject" class="form-control form-control-lg form-control-a" placeholder="Subject" required>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <textarea name="message" class="form-control" name="message" cols="45" rows="8" placeholder="Message" required></textarea>
+                      </div>
+                    </div>
+                   
+
+                    <div class="col-md-12 text-center">
+                      <button class='btn btn-a' 
+                      id='submit'
+                      >Submit</button>             
+                           </div>
+                  </div>
+                </form>
+               
+              </div>
+              <div class="col-md-5 section-md-t3">
+                <div class="icon-box section-b2">
+                  <div class="icon-box-icon">
+                    <span class="bi bi-envelope"></span>
+                  </div>
+                  <div class="icon-box-content table-cell">
+                    <div class="icon-box-title">
+                      <h4 class="icon-title">Say Hello</h4>
+                    </div>
+                    <div class="icon-box-content">
+                      <p class="mb-1">Email.
+                        <span class="color-a">sales@tsorotec.com</span>
+                      </p>
+                      <p class="mb-1">Phone.
+                        <span class="color-a">08677 196495</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="icon-box section-b2">
+                  <div class="icon-box-icon">
+                    <span class="bi bi-geo-alt"></span>
+                  </div>
+                  <div class="icon-box-content table-cell">
+                    <div class="icon-box-title">
+                      <h4 class="icon-title">Find us in</h4>
+                    </div>
+                    <div class="icon-box-content">
+                      <p class="mb-1">
+                        Greendale, Arcturus Road,
+                        <br> Zimbabwe.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="icon-box">
+                  <div class="icon-box-icon">
+                    <span class="bi bi-share"></span>
+                  </div>
+                  <div class="icon-box-content table-cell">
+                    <div class="icon-box-title">
+                      <h4 class="icon-title">Social networks</h4>
+                    </div>
+                    <div class="icon-box-content">
+                      <div class="socials-footer">
+                        <ul class="list-inline">
+                          <li class="list-inline-item">
+                            <a href="https://www.facebook.com/tsorotec/" class="link-one">
+                              <i class="bi bi-facebook" aria-hidden="true"></i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a href="https://twitter.com/tsorotec" class="link-one">
+                              <i class="bi bi-twitter" aria-hidden="true"></i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a href="https://www.instagram.com/tsorotec/" class="link-one">
+                              <i class="bi bi-instagram" aria-hidden="true"></i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a href="https://www.tiktok.com/@tsorotec" class="link-one">
+                              <i class="bi bi-tiktok" aria-hidden="true"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Contact Single-->
+
+  </body> 
+
+</html>

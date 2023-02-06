@@ -1,0 +1,316 @@
+<title>Purple Admin</title>
+<!-- plugins:css -->
+<link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+<!-- endinject -->
+<!-- Plugin css for this page -->
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<!-- endinject -->
+<!-- Layout styles -->
+<!-- End layout styles -->
+<link rel="shortcut icon" href="images/images.png" />
+        <link rel="stylesheet" href="assets/css/payrecord.css">
+        <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+        <!-- endinject -->
+        <!-- Plugin css for this page -->
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
+        <title></title>
+    </head>
+    <body> 
+        <%- include('partials/dashnavbar') %>  
+
+        <%- include('partials/dashsidebar') %> 
+
+        <div class="row">
+            <div id="admin" class="col s12">
+              <div class="card material-table">
+                <div class="table-header">
+                  <span class="table-title">Tenants DataTable</span>
+                  <div class="actions">
+                    <a href="#add_users" class="modal-trigger waves-effect btn-flat nopadding"><i class="material-icons">person_add</i></a>
+                    <a href="#" class="search-toggle waves-effect btn-flat nopadding"><i class="material-icons">search</i></a>
+                  </div>
+                </div>
+                <table id="datatable">
+                  <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Residence<br>Occupied</th>
+                        <th>Payment<br>Status</th>
+                        <th>Date Paid</th> 
+                        <th>Month Paid For</th>
+                        <th>Year</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+
+                    </tr>
+                  </thead> 
+                  <tbody>
+                    <% if(payrecord.length > 0) {%> 
+                      <% payrecord.forEach((record)=>{ %> 
+                  <tr> 
+                      <td><%= record.fullname%> </td> 
+                      <td><%= record.address %> </td> 
+                      <td><%= record.paymentstatus %> </td> 
+                      <td><%= record.date%> </td> 
+                      <td><%= record.month%> </td>
+                      <td><%= record.year %> </td>
+                      <td><%= record.note %> </td>
+
+                      <td> 
+                          <a class="btn btn-warning btn-sm edit" href="editrecord/<%= record.id%>"><i class="mdi mdi-border-color"></i></i>
+                          <a class="btn btn-danger btn-sm delete" href="deleterecord/<%= record.id%>"><i class="mdi mdi-delete"></i></i>
+
+                  </tr> 
+
+                  <% });%> 
+                  <%} else{%> 
+                      <td valign="middle">
+                        <img src="assets/img/no-data-found.png" width="200" height="200"> 
+                      </td>
+                  <% } %> 
+                
+                </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+       
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+  <!-- plugins:js -->
+ 
+</body>
+</html>
+
+<script>
+(function(window, document, undefined) {
+
+var factory = function($, DataTable) {
+  "use strict";
+
+  $('.search-toggle').click(function() {
+    if ($('.hiddensearch').css('display') == 'none')
+      $('.hiddensearch').slideDown();
+    else
+      $('.hiddensearch').slideUp();
+  });
+
+  /* Set the defaults for DataTables initialisation */
+  $.extend(true, DataTable.defaults, {
+    dom: "<'hiddensearch'f'>" +
+      "tr" +
+      "<'table-footer'lip'>",
+    renderer: 'material'
+  });
+
+  /* Default class modification */
+  $.extend(DataTable.ext.classes, {
+    sWrapper: "dataTables_wrapper",
+    sFilterInput: "form-control input-sm",
+    sLengthSelect: "form-control input-sm"
+  });
+
+  /* Bootstrap paging button renderer */
+  DataTable.ext.renderer.pageButton.material = function(settings, host, idx, buttons, page, pages) {
+    var api = new DataTable.Api(settings);
+    var classes = settings.oClasses;
+    var lang = settings.oLanguage.oPaginate;
+    var btnDisplay, btnClass, counter = 0;
+
+    var attach = function(container, buttons) {
+      var i, ien, node, button;
+      var clickHandler = function(e) {
+        e.preventDefault();
+        if (!$(e.currentTarget).hasClass('disabled')) {
+          api.page(e.data.action).draw(false);
+        }
+      };
+
+      for (i = 0, ien = buttons.length; i < ien; i++) {
+        button = buttons[i];
+
+        if ($.isArray(button)) {
+          attach(container, button);
+        } else {
+          btnDisplay = '';
+          btnClass = '';
+
+          switch (button) {
+
+            case 'first':
+              btnDisplay = lang.sFirst;
+              btnClass = button + (page > 0 ?
+                '' : ' disabled');
+              break;
+
+            case 'previous':
+              btnDisplay = '<i class="material-icons">chevron_left</i>';
+              btnClass = button + (page > 0 ?
+                '' : ' disabled');
+              break;
+
+            case 'next':
+              btnDisplay = '<i class="material-icons">chevron_right</i>';
+              btnClass = button + (page < pages - 1 ?
+                '' : ' disabled');
+              break;
+
+            case 'last':
+              btnDisplay = lang.sLast;
+              btnClass = button + (page < pages - 1 ?
+                '' : ' disabled');
+              break;
+
+          }
+
+          if (btnDisplay) {
+            node = $('<li>', {
+                'class': classes.sPageButton + ' ' + btnClass,
+                'id': idx === 0 && typeof button === 'string' ?
+                  settings.sTableId + '_' + button : null
+              })
+              .append($('<a>', {
+                  'href': '#',
+                  'aria-controls': settings.sTableId,
+                  'data-dt-idx': counter,
+                  'tabindex': settings.iTabIndex
+                })
+                .html(btnDisplay)
+              )
+              .appendTo(container);
+
+            settings.oApi._fnBindAction(
+              node, {
+                action: button
+              }, clickHandler
+            );
+
+            counter++;
+          }
+        }
+      }
+    };
+
+    // IE9 throws an 'unknown error' if document.activeElement is used
+    // inside an iframe or frame. 
+    var activeEl;
+
+    try {
+      // Because this approach is destroying and recreating the paging
+      // elements, focus is lost on the select button which is bad for
+      // accessibility. So we want to restore focus once the draw has
+      // completed
+      activeEl = $(document.activeElement).data('dt-idx');
+    } catch (e) {}
+
+    attach(
+      $(host).empty().html('<ul class="material-pagination"/>').children('ul'),
+      buttons
+    );
+
+    if (activeEl) {
+      $(host).find('[data-dt-idx=' + activeEl + ']').focus();
+    }
+  };
+
+  /*
+   * TableTools Bootstrap compatibility
+   * Required TableTools 2.1+
+   */
+  if (DataTable.TableTools) {
+    // Set the classes that TableTools uses to something suitable for Bootstrap
+    $.extend(true, DataTable.TableTools.classes, {
+      "container": "DTTT btn-group",
+      "buttons": {
+        "normal": "btn btn-default",
+        "disabled": "disabled"
+      },
+      "collection": {
+        "container": "DTTT_dropdown dropdown-menu",
+        "buttons": {
+          "normal": "",
+          "disabled": "disabled"
+        }
+      },
+      "print": {
+        "info": "DTTT_print_info"
+      },
+      "select": {
+        "row": "active"
+      }
+    });
+
+    // Have the collection use a material compatible drop down
+    $.extend(true, DataTable.TableTools.DEFAULTS.oTags, {
+      "collection": {
+        "container": "ul",
+        "button": "li",
+        "liner": "a"
+      }
+    });
+  }
+
+}; // /factory
+
+// Define as an AMD module if possible
+if (typeof define === 'function' && define.amd) {
+  define(['jquery', 'datatables'], factory);
+} else if (typeof exports === 'object') {
+  // Node/CommonJS
+  factory(require('jquery'), require('datatables'));
+} else if (jQuery) {
+  // Otherwise simply initialise as normal, stopping multiple evaluation
+  factory(jQuery, jQuery.fn.dataTable);
+}
+
+})(window, document);
+
+$(document).ready(function() {
+$('#datatable').dataTable({
+  "serverSide": true,
+  "searching": true,
+  "searchable": true,
+  "serverMethod": 'get',
+  "ajax": {
+    "url" : "/paymentrecord"
+  },
+  "columns": [
+    {data : "fullname"},
+    {data : "address"}, 
+    {data : "paymentsatus"}, 
+    {data : "date"}, 
+    {data : "month"}, 
+    {data : "year"},
+    {data : "note"}
+
+  ],
+  "oLanguage": {
+    "sStripClasses": "",
+    "sSearch": "",
+    "sSearchPlaceholder": "Enter any keyword here to filter...",
+    "sInfo": "_START_ -_END_ of _TOTAL_",
+    "sLengthMenu": '<span>Rows per page:</span><select class="browser-default">' +
+      '<option value="10">10</option>' +
+      '<option value="20">20</option>' +
+      '<option value="30">30</option>' +
+      '<option value="40">40</option>' +
+      '<option value="50">50</option>' +
+      '<option value="-1">All</option>' +
+      '</select></div>'
+  },
+  bAutoWidth: false
+});
+});
+</script>

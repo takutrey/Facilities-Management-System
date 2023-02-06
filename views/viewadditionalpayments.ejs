@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= title %> </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/public/assets/css/payrecord.css">
+
+    <link rel="stylesheet" href="assets/css/stylee.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="images/images.png" />
+  </head>
+    <body> 
+
+    <%- include('partials/dashnavbar') %>  
+
+    <%- include('partials/dashsidebar') %> 
+  
+    <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+           
+            
+     <table id="example" class="table table-striped " cellspacing="0" >
+        <thead>
+            <tr>
+                <th>Payment</th>
+                <th>Payment Status</th> 
+                <th>Month Paid For</th> 
+                <th>Year</th> 
+                <th>Note</th>
+                <th>Proof Of Payment</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody> 
+            <% if(addpayments.length > 0) {%> 
+                <% addpayments.forEach((addpayment)=>{ %> 
+            <tr> 
+                <td><%= addpayment.payment%> </td> 
+                <td><%= addpayment.paymentstatus %> </td> 
+                <td><%= addpayment.month %> </td> 
+                <td><%= addpayment.year%> </td> 
+                <td><%= addpayment.note%> </td>
+                <td><%= addpayment.paymentproof %> </td>
+
+          
+            </tr> 
+
+            <% })%> 
+            <%} else{%> 
+                <tr> 
+                  <td>No Records Available</td>
+                </tr>
+              <% } %> 
+
+        </tbody>
+    </table>
+
+</div>
+</div>
+</div>
+
+
+<div class="modal" tabindex="-1" id="action_modal">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form action="/addpaymentstatus" method="post" id="sample_form">
+            <div class="modal-header" id="dynamic_modal_title">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="mb-3">
+                    <label class="form-label">Tenant Fullname</label>
+                    <select name="fullname" id="fullname" class="form-control">
+                       <% for(let i = 0; i<tenants.length;i++){ %> 
+                        <option><%= tenants[i] %> </option> 
+                        <% } %> 
+                    </select>
+                </div>
+               
+                <div class="mb-3">
+                    <label class="form-label">Residence Occupied</label>
+                    <select name="address" id="address" class="form-control">
+                        <% for(let i = 0; i<tenaddress.length;i++){ %> 
+                            <option><%= tenaddress[i] %> </option> 
+                            <% } %> 
+                      
+                    </select>
+                </div>  
+                <div class="mb-3">
+                    <label class="form-label">Payment Status</label>
+                    <select name="paymentstatus" id="paymentstatus" class="form-control">
+                        <option value="Paid">Paid</option>
+                        <option value="Arrears">Arrears</option> 
+                        <option value="Advance Payment">Advance Payment</option>\
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Date Paid</label>
+                    <input type="date" name="date" id="date" class="form-control" />
+                </div> 
+                <div class="mb-3">
+                    <label class="form-label">Month</label>
+                    <select name="month" id="month" class="form-control">
+                        <option value="January">January</option>
+                        <option value="February">February</option> 
+                        <option value="March">March</option> 
+                        <option value="April">April</option>\
+                        <option value="May">May</option>\
+                        <option value="June">June</option>\
+                        <option value="July">July</option>\
+                        <option value="August">August</option>\
+                        <option value="September">September</option>\
+                        <option value="October">October</option>\
+                        <option value="November">November</option>\
+                        <option value="December">December</option>\
+                    </select>
+                </div> 
+                <div class="mb-3">
+                    <label class="form-label">Year</label>
+                    <select name="year" id="year" class="form-control">
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option> 
+                        <option value="2024">2024</option> 
+                        <option value="2025">2025</option>\
+                      
+                    </select>
+                </div>  
+                <div class="mb-3">
+                    <label class="form-label">Note</label>
+                    <input type="text" name="note" id="note" class="form-control" />
+                </div>
+            </div> 
+          
+            
+            <div class="modal-footer">
+                <input type="hidden" name="id" id="id" />
+                <input type="hidden" name="action" id="action" value="Add" />
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="action_button">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+   <!--Import jQuery before export.js-->
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+<!-- plugins:js -->
+<script src="assets/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="assets/vendors/chart.js/Chart.min.js"></script>
+<script src="assets/js/jquery.cookie.js" type="text/javascript"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="assets/js/off-canvas.js"></script>
+<script src="assets/js/hoverable-collapse.js"></script>
+<script src="assets/js/misc.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/todolist.js"></script>
+<!-- End custom js for this page -->
+ <!--Data Table-->
+ <script type="text/javascript"  src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+ <script type="text/javascript"  src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+
+ <!--Export table buttons-->
+ <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+ <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js" ></script>
+ <script type="text/javascript"  src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
+
+<!--Export table button CSS-->
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
+
+
+</body>
+</html>
+
+<script>
+    $('#add_data').click(function() {
+   $('#action_modal').modal('show');
+});
+
+$(document).ready(function () {
+      
+      // DataTable initialisation
+      var table = $("#example").DataTable({
+          paging: true,
+          bDestroy: true,
+          dom: '<"dt-buttons"Bf><"clear">lirtp',  
+          buttons: [
+                              'copy', 'csv', 'excel', 'pdf', 'print'
+                          ]
+      ,     
+      
+      });
+  
+      // Apply the search
+      $("#example thead").on("keyup", "input", function () {
+          table.column($(this).parent().index())
+          .search(this.value)
+          .draw();
+      }); 
+     
+      
+  });
+
+
+</script>
+
+
+
+

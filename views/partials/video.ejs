@@ -1,0 +1,10 @@
+<div class="image-upload">
+    <h2 class="mb-3">Upload Video</h2> 
+   <%= typeof msg != 'undefined' ? msg : '' %> 
+    <form action="/vidupload" enctype="multipart/form-data" method="post">
+        <input type="file" class="form-control file-upload-info" name="video"/> 
+
+      <div> 
+        <input type="submit" class="btn btn-primary" value="Upload" />
+      </div>
+    </form>  

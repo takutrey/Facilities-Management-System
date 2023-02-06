@@ -1,0 +1,69 @@
+  <div class="container-fluid page-body-wrapper">
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item nav-profile">
+        <a href="#" class="nav-link">
+        
+          <div class="nav-profile-text d-flex flex-column"> 
+            <span class="font-weight-bold mb-2"><% if(locals.profilemessage) { %>
+              <div class="nav-profile-text" style="font-weight:bold;"><%= profilemessage %></div>
+              <% } %> </span>
+          </div>
+          <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tenantdash">
+          <span class="menu-title">Dashboard</span>
+          <i class="mdi mdi-home menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/tenantproperty">
+          <span class="menu-title">Residence Occupied</span>
+          <i class="mdi mdi-key menu-icon"></i>
+        </a>
+      </li>  
+
+      <li class="nav-item">
+        <a class="nav-link" href="/renovationrequested">
+          <span class="menu-title">Repairs Requests</span>
+          <i class="mdi mdi-help-circle menu-icon"></i>
+        </a>
+      </li> 
+
+      <li class="nav-item">
+        <a class="nav-link" href="/renovations">
+          <span class="menu-title">Repairs</span>
+          <i class="mdi mdi-wrench menu-icon"></i>
+        </a>
+      </li> 
+
+      <li class="nav-item">
+        <a class="nav-link" href="/tenantlease">
+          <span class="menu-title">Leases</span>
+          <i class="mdi mdi-file menu-icon"></i>
+        </a>
+      </li>  
+
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
+          <span class="menu-title">Payment Records</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-file-document menu-icon"></i>
+        </a>
+        <div class="collapse" id="general-pages">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/viewpaymentstatus">Rent Payment</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/additionalpayments">Additional Payments </a></li>
+      
+          </ul>
+        </div>
+      </li> 
+
+     
+    </ul>
+  </nav>

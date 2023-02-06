@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= title %> </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+
+    <link rel="stylesheet" href="assets/css/stylee.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  </head>
+    <body> 
+
+    <%- include('partials/dashnavbar') %>  
+
+    <%- include('partials/dashsidebar') %> 
+  
+    <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">House Preferences</h2> 
+            <% if(message.length > 0) { %>
+              <div class="alert alert-success" role="alert"><%= message %></div>
+              <% } %>
+
+            
+      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th> Location </th>
+            <th> Total Rooms </th>
+            <th> Bedrooms </th>
+            <th> Bathrooms </th> 
+            <th> Price </th> 
+            <th> Amenities</th> 
+            <th> Enquirer</th>
+            <th>Enquirer<br>Contact</th>  
+            <th>Status</th> 
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+                        
+          <% enquiries.forEach(function(enquiry){ %>
+            <tr>
+              <td><%= enquiry.location%> </td> 
+              <td><%= enquiry.rooms%> </td> 
+              <td><%= enquiry.bedrooms%> </td> 
+              <td><%= enquiry.bathrooms %> </td> 
+              <td><%= enquiry.price %> </td>  
+              <td><%= enquiry.amenities %> </td>  
+              <td><%= enquiry.contactName %> </td>  
+              <td><%= enquiry.contactNumber%> </td>  
+                    <td> <% if(enquiry.status == 'Complete') {%>
+                        <span class="badge rounded-pill bg-success"><%= enquiry.status %></span> 
+                        
+                          <% } else { %>
+                            <span class="badge rounded-pill bg-primary"><%= enquiry.status %></span>
+                    <% } %> 
+                    
+                    </td> 
+
+                    <td> <a class="btn btn-success btn-sm" href="ipa/<%= enquiry.id %>">Completed</i>
+                      <a class="btn btn-danger btn-sm delete" href="bvisa/<%= enquiry.id %>"><i class="mdi mdi-delete"></i></i>
+                    </td>
+                    
+              </tr>
+         <% }); %> 
+
+            
+          </tbody>
+    
+    </table>
+
+</div>
+</div>
+</div>
+
+
+   <!--Import jQuery before export.js-->
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+<!-- plugins:js -->
+<script src="assets/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="assets/vendors/chart.js/Chart.min.js"></script>
+<script src="assets/js/jquery.cookie.js" type="text/javascript"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="assets/js/off-canvas.js"></script>
+<script src="assets/js/hoverable-collapse.js"></script>
+<script src="assets/js/misc.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/todolist.js"></script>
+<!-- End custom js for this page -->
+ <!--Data Table-->
+ <script type="text/javascript"  src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+ <script type="text/javascript"  src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+
+ <!--Export table buttons-->
+ <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+ <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js" ></script>
+ <script type="text/javascript"  src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
+
+<!--Export table button CSS-->
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
+
+
+</body>
+</html>
+
+<script> 
+   
+   setTimeout(function() {
+    $('.alert').fadeOut('slow');
+}, 2000);
+
+
+
+$(document).ready(function () {
+      
+      // DataTable initialisation
+      var table = $("#example").DataTable({
+          paging: true,
+          bDestroy: true,
+          dom: '<"dt-buttons"Bf><"clear">lirtp',  
+          buttons: [
+                              'copy', 'csv', 'excel', 'pdf', 'print'
+                          ]
+      ,     
+      
+      });
+  
+      // Apply the search
+      $("#example thead").on("keyup", "input", function () {
+          table.column($(this).parent().index())
+          .search(this.value)
+          .draw();
+      }); 
+     
+      
+  });
+
+
+</script>
+
+
+
+

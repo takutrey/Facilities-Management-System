@@ -1,0 +1,21 @@
+<div class="image-upload">
+    <h2 class="mb-3">Residence in Pictures</h2> 
+   <%= typeof message != 'undefined' ? message : '' %> 
+    <form action="/imgupload" enctype="multipart/form-data" method="post">
+        <input type="file" class="form-control file-upload-info" name="images" multiple/> 
+
+        <div> 
+          <input type="submit" class="btn btn-primary" value="Upload" />
+        </div>
+    </form>  
+
+    <div class="image-upload">
+      <form action="/profileimgupload" enctype="multipart/form-data" method="post">
+          <input type="file" class="form-control file-upload-info" name="profileimage"/> 
+  
+          <div> 
+            <input type="submit" class="btn btn-primary" value="Upload" />
+          </div>
+      </form>  
+  
+     

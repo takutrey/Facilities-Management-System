@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<!-- Mirrored from grandetest.com/theme/findhouse-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Jul 2020 09:57:35 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="advanced custom search, agency, agent, business, clean, corporate, directory, google maps, homes, idx agent, listing properties, membership packages, property, real broker, real estate, real estate agent, real estate agency, realtor">
+<meta name="description" content="FindHouse - Real Estate HTML Template">
+<meta name="CreativeLayers" content="ATFN">
+<!-- css file -->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<!-- Responsive stylesheet -->
+<link rel="stylesheet" href="/css/responsive.css">
+<!-- Title -->
+<title>Homie - Signup</title>
+<!-- Favicon -->
+<link href="images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
+<link href="images/favicon.ico" sizes="128x128" rel="shortcut icon" />
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+	
+	<!-- Modal -->
+	<div class="sign_up_modal  " tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      	
+		      	<div class="modal-body container pb20">
+		      		<div class="row">
+		      			<div class="col-lg-12">
+				    		<ul class="sign_up_tab nav nav-tabs">
+							  	<li class="nav-item">
+							    	<a class="nav-link"  href="/login" aria-selected="true">Login</a>
+							  	</li>
+							  	<li class="nav-item">
+							    	<a class="nav-link active" id="profile-tab" data-toggle="tab" href="#" role="tab" aria-controls="profile" aria-selected="false">Register</a>
+							  	</li>
+							</ul>
+		      			</div>
+		      		</div>
+					<div class="tab-content container" id="myTabContent">
+					  	<div class="row mt25 tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab">
+					  		<div class="col-lg-6 col-xl-6">
+					  			<div class="login_thumb">
+					  				<img class="img-fluid w100" src="/images/resource/login.jpg" alt="login.jpg">
+					  			</div>
+					  		</div>
+					  		
+					  	</div>
+					  	<div class="row mt25 tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+					  		<div class="col-lg-6 col-xl-6">
+					  			<div class="regstr_thumb">
+					  				<img class="img-fluid w100" src="/images/resource/regstr.jpg" alt="regstr.jpg">
+					  			</div>
+					  		</div>
+					  		<div class="col-lg-6 col-xl-6">
+								<div class="sign_up_form">
+									<div class="heading">
+										<h4>Register</h4>
+									</div>
+                  <% if(locals.Message) { %>
+                    <div class="alert alert-danger" role="alert"><%= Message %></div>
+                    <% } %>
+					<% if(locals.reason) { %>
+						<div class="alert alert-danger" role="alert"><%= reason %></div>
+						<% } %>
+									<form class="forms-sample" action="/register" method="post">
+										<div class="row">
+											
+										</div>
+										
+										<div class="form-group input-group">
+										    <input type="text" class="form-control" id="exampleInputName" name="fullname" placeholder="Fullname">
+										    <div class="input-group-prepend">
+										    	<div class="input-group-text"><i class="flaticon-user"></i></div>
+										    </div>
+										</div>
+										<div class="form-group input-group">
+										    <input type="text" class="form-control" id="exampleInputName" name="username" placeholder="User Name">
+										    <div class="input-group-prepend">
+										    	<div class="input-group-text"><i class="flaticon-user"></i></div>
+										    </div>
+										</div>
+										<div class="form-group input-group">
+										    <input type="number" class="form-control" id="exampleInputEmail2" name="phone" placeholder="Phone Number">
+										    <div class="input-group-prepend">
+										    	<div class="input-group-text"><i class="fa fa-phone"></i></div>
+										    </div>
+										</div>
+										<div class="form-group input-group">
+										    <input type="email" class="form-control" id="exampleInputEmail2" name="email" placeholder="Email">
+										    <div class="input-group-prepend">
+										    	<div class="input-group-text"><i class="fa fa-envelope-o"></i></div>
+										    </div>
+										</div>
+										<div class="form-group input-group">
+										    <input type="password" class="form-control" id="exampleInputPassword2" name="password" placeholder="Password"> 
+
+										    <div class="input-group-prepend">
+										    	<div class="input-group-text"><i class="flaticon-password"></i></div>
+										    </div> <br>
+
+										</div>
+										<span id="StrengthDisp" class="badge displayBadge"></span> 
+
+										
+										<div class="form-group input-group">
+										    <input type="password" class="form-control" id="exampleInputPassword3" name="cpassword" placeholder="Re-enter password"> 
+
+										    <div class="input-group-prepend">
+										    	<div class="input-group-text"><i class="flaticon-password"></i></div>
+										    </div>
+										</div>
+										<div class="form-group ui_kit_select_search mb0">
+											<select class="selectpicker" name="role" data-live-search="true" data-width="100%">
+												<option data-tokens="SelectRole">Landlord</option>
+												<option data-tokens="Agent/Agency">Agent</option>
+												<option data-tokens="SingleUser">Tenant</option>
+												<option data-tokens="SingleUser">Property Manager</option>
+
+											</select>
+										</div>
+										
+										<button type="submit" ng-click="register()" id="register" class="btn btn-log btn-block btn-thm" disabled>Sign Up</button>
+										<p class="text-center">Already have an account? <a class="text-thm" href="/login">Log In</a></p>
+									</form>
+								</div>
+					  		</div>
+					  	</div>
+					</div> 
+
+                    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/js/jquery-migrate-3.0.0.min.js"></script>
+<script type="text/javascript" src="/js/popper.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/jquery.mmenu.all.js"></script>
+<script type="text/javascript" src="/js/ace-responsive-menu.js"></script>
+<script type="text/javascript" src="/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="/js/isotop.js"></script>
+<script type="text/javascript" src="/js/snackbar.min.js"></script>
+<script type="text/javascript" src="/js/simplebar.js"></script>
+<script type="text/javascript" src="/js/parallax.js"></script>
+<script type="text/javascript" src="/js/scrollto.js"></script>
+<script type="text/javascript" src="/js/jquery-scrolltofixed-min.js"></script>
+<script type="text/javascript" src="/js/jquery.counterup.js"></script>
+<script type="text/javascript" src="/js/wow.min.js"></script>
+<script type="text/javascript" src="/js/slider.js"></script>
+<script type="text/javascript" src="/js/timepicker.js"></script>
+<!-- Custom script for all pages --> 
+<script type="text/javascript" src="/js/script.js"></script>
+
+<script> 
+   let timeout;
+
+// traversing the DOM and getting the input and span using their IDs
+
+let password = document.getElementById('exampleInputPassword2')
+let strengthBadge = document.getElementById('StrengthDisp')
+var register = document.getElementById('register')
+
+// The strong and weak password Regex pattern checker
+
+let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+let mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))')
+
+function StrengthChecker(PasswordParameter){
+	// We then change the badge's color and text based on the password strength
+
+	if(strongPassword.test(PasswordParameter)) {
+		strengthBadge.style.backgroundColor = "green"
+		strengthBadge.style.color = 'white'
+		strengthBadge.textContent = 'Strong'
+	} else if(mediumPassword.test(PasswordParameter)){
+		strengthBadge.style.backgroundColor = 'blue'
+		strengthBadge.style.color = 'white'
+		strengthBadge.textContent = 'Medium'
+	} else{
+		strengthBadge.style.backgroundColor = 'red'
+		strengthBadge.style.color = 'white'
+		strengthBadge.textContent = 'Include Uppercase letters and special characters @,$ etc'
+	}
+}
+
+// Adding an input event listener when a user types to the  password input 
+
+password.addEventListener("input", () => {
+
+	//The badge is hidden by default, so we show it
+
+	strengthBadge.style.display= 'block'
+	clearTimeout(timeout);
+
+	//We then call the StrengChecker function as a callback then pass the typed password to it
+
+	timeout = setTimeout(() => StrengthChecker(password.value), 500);
+
+	//Incase a user clears the text, the badge is hidden again
+
+	if(password.value.length !== 0){
+		strengthBadge.style.display != 'block'
+	} else{
+		strengthBadge.style.display = 'none'
+	} 
+
+	if (strengthBadge.textContent == 'Strong') {
+     register.disabled = false;
+   } else {
+     register.disabled = true;
+   }
+});
+
+</script>
+</body>
+
+<!-- Mirrored from grandetest.com/theme/findhouse-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Jul 2020 09:57:39 GMT -->
+</html>

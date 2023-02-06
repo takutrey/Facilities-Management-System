@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title><%= title %> </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: EstateAgency - v4.8.0
+  * Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Property Search Section ======= -->
+<%- include('partials/head') %> 
+
+  <main id="main">
+    <!-- =======Intro Single ======= -->
+    <section class="intro-single">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="title-single-box">
+              <h1 class="title-single">Our Agents</h1>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </section><!-- End Intro Single-->
+
+    <!-- ======= Agents Grid ======= --> 
+
+    <section class="agents-grid grid">
+      <div class="container"> 
+
+        <div class="row"> 
+          <% if(agents.length>0) {%> 
+
+          <% agents.forEach(function(agent){ %>
+
+
+          <div class="col-md-4">
+            <div class="card-box-d">
+              <div class="card-img-d">
+                <img src="<%= agent.profileimage %>" alt="" class="img-d img-fluid">
+              </div>
+              <div class="card-overlay card-overlay-hover">
+                <div class="card-header-d">
+                  <div class="card-title-d align-self-center">
+                    <h3 class="title-d">
+                      <a href="agentvacancies/<%= agent.username %>" class="link-two"><%= agent.agentFullName %> 
+                        <br> </a>
+                    </h3>
+                  </div>
+                </div>
+                <div class="card-body-d">
+                  <p class="content-d color-text-a">
+                    <%= agent.description %> 
+                  </p>
+                  <div class="info-agents color-a">
+                    <p>
+                      <strong>Phone: </strong> <%= agent.phone %> 
+                    </p>
+                    <p>
+                      <strong>Email: </strong> <%= agent.email %> 
+                    </p>
+                  </div>
+                </div>
+                <div class="card-footer-d">
+                  <div class="socials-footer d-flex justify-content-center">
+                    <ul class="list-inline">
+                      <li class="list-inline-item">
+                        <a href="<%= agent.facebook %> " class="link-one">
+                          <i class="bi bi-facebook" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="<%= agent.twiiter %> " class="link-one">
+                          <i class="bi bi-twitter" aria-hidden="true"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="<%= agent.instagram %> " class="link-one">
+                          <i class="bi bi-instagram" aria-hidden="true"></i>
+                        </a>
+                      </li>
+  
+                    </ul>
+                  </div>
+                </div> 
+
+              </div>
+            </div> 
+            <a href="agentvacancies/<%= agent.username %>" class="btn btn-primary">View Properties</a>
+
+          </div> 
+          <% }); %>  
+
+          <div class="row">
+            <div class="col-sm-12">
+              <nav class="pagination-a">
+                <ul class="pagination justify-content-end">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">
+                      <span class="bi bi-chevron-left"></span>
+                    </a>
+                  </li> 
+                  <% for(let i = iterator; i <=endingLink; i++) { %> 
+                    <% if(page > numOfPages) {%> 
+                      <li class="page-item active">
+                      <a class="page-link" href="/agents?page=<%=page-1 %> ">Prev</a> 
+                      <% } %> 
+                      
+                    <% if(i==page) {%> 
+                      <li class="page-item active">
+                        <a class="page-link" href="/agents?page=<%= i %> "><%= i %> </a>
+                      </li>
+                      <% continue; %> 
+                     <% } %> 
+                     <li class="page-item">
+                      <a class="page-link" href="/agents?page=<%= i %> "><%= i %> </a>
+                    </li>
+                  <% } %> 
+                 <% if(page < numOfPages) {%> 
+                  <li class="page-item active">
+                  <a class="page-link" href="/agents?page=<%=page+1 %> ">Next</a> 
+                </li>
+  
+                  <% } %> 
+                </ul>
+              </nav>
+            </div>
+          </div> 
+          <%} else{%> 
+            <h4 style="color: red;">No agents available!!</h4>
+  
+          <% } %> 
+        </div>
+    </section><!-- End Agents Grid-->
+
+  </main><!-- End #main -->
+
+ <%- include('partials/footer') %> 
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+body {
+	margin: 2em;
+}
+
+thead input {
+	width: 100%;
+	padding: 3px;
+	box-sizing: border-box;
+} 
+table { 
+    table-layout:fixed; 
+    margin-top: 20%; 
+    padding-left: 20%;
+} 
+
+
+td { 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    word-wrap: break-word;
+} 
+
+@media only screen and (max-width: 480px) {
+    /* horizontal scrollbar for tables if mobile screen */
+    .tablemobile {
+        overflow-x: auto;
+        display: block;
+    }
+}
